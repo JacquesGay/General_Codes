@@ -1,3 +1,5 @@
+### This script creates and sbatches a gaussian calculation for each atom with a chosen basis set to determine the number of basis functions with that basis set.
+
 echo "What basis do you want to run?"
 read basis
 numatoms=`wc -l atoms.txt | awk '{print $1}'`
