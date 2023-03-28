@@ -1,3 +1,5 @@
+#### This script pulls the atom identities and basis functions for that atom under a specific basis set. This is ran after the basis_func.sh script
+
 rm -f basis.xls
 rm -f primitive.xls
 rm -f cartesian.xls
