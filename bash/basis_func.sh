@@ -1,4 +1,6 @@
 ### This script creates and sbatches a gaussian calculation for each atom with a chosen basis set to determine the number of basis functions with that basis set.
+### Requires atoms.txt file
+
 
 echo "What basis do you want to run?"
 read basis
