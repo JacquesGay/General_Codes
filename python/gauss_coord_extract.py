@@ -1,4 +1,6 @@
-#Changes coordinates in Gaussian output file into an .xyz file
+"""
+Changes coordinates in Gaussian output file into an .xyz file
+"""
 
 import sys
 import re
