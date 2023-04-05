@@ -1,4 +1,6 @@
- #This code is underdevelopment for my computational chemistry class. It is a hartree fock code that runs for the scf while pulling the integrals from psi4
+ """
+ This code is underdevelopment for my computational chemistry class. It is a hartree fock code that runs for the scf while pulling the integrals from psi4
+ """
  
  import psi4 as p
  
