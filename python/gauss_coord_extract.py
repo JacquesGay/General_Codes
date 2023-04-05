@@ -1,5 +1,4 @@
-#Loads the sys to additional input in the line
-#Loads the re search function
+#Changes coordinates in Gaussian output file into an .xyz file
 
 import sys
 import re
