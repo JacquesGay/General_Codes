@@ -1,3 +1,5 @@
+#This code accounts for state switching that occurs with excited state calculations
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
