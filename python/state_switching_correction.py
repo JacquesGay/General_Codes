@@ -4,7 +4,7 @@
 Created on Wed Apr 13 15:22:23 2022
 State Switching Correction
 @author: jgay15
-This code accounts for state switching that occurs with excited state calculations
+This code corrects for state switching that occurs with excited state calculations
 """
 
 import os
