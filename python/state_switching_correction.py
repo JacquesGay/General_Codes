@@ -1,11 +1,10 @@
-#This code accounts for state switching that occurs with excited state calculations
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Wed Apr 13 15:22:23 2022
 State Switching Correction
 @author: jgay15
+This code accounts for state switching that occurs with excited state calculations
 """
 
 import os
