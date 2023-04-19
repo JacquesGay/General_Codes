@@ -76,7 +76,10 @@ def simple_scf(molecule):
 
         #Get electronic energy
         SCF_E = np.einsum('uv,vu->', (H+F), D, optimize=True) + E_nuc
-        print('SCF Iteration %3d: Energy = %4.16f dE = % 1.5E' % (scf_iter, SCF_E, SCF_E - E_old))
+
+        #Get difference in energy
+        dE = E_old - SCF_E
+        print(F'SCF Iteration %3d: {scf_iter} Energy = {SCF_E} dE = {dE}')
 
         #Check convergence
         if (abs(SCF_E - E_old) < E_conv):
