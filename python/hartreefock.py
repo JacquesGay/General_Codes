@@ -4,7 +4,7 @@ import scipy
 
 def simple_scf(molecule):
     MAXITER = 50 #Number of allowed iterations
-    E_conv = 1.0e-6 #difference criteria for convergence
+    E_conv = 1.0e-10 #difference criteria for convergence
 
     molecule.update_geometry() #updates to most recent geometry
 
@@ -54,8 +54,8 @@ def simple_scf(molecule):
     F_i_1 = np.matmul(S_half.T, H)
     F_i = np.matmul(F_i_1, S_half)
     #Diagonalize fock matrix using a standard eigenvalue routine with scipy; E = enegergy matrix, C = coefficient matrix
-    C, E = np.linalg.eigh(F_i)
-    C = np.diag(C)
+    E, C = np.linalg.eigh(F_i)
+    #C = np.diag(C)
     #Form original eigenvector matrix
     C_0 = np.matmul(S_half,C)
     #from C_0 get the orbitals that are occupied and ommit unoccupied
@@ -79,7 +79,7 @@ def simple_scf(molecule):
 
         #Get difference in energy
         dE = E_old - SCF_E
-        print(F'SCF Iteration %3d: {scf_iter} Energy = {SCF_E} dE = {dE}')
+        print(F'SCF Iteration : {scf_iter} Energy = {SCF_E} dE = {dE}')
 
         #Check convergence
         if (abs(SCF_E - E_old) < E_conv):
@@ -92,8 +92,8 @@ def simple_scf(molecule):
       
 
         #Diagonalize the fock matrix
-        C_prime, E_prime = scipy.linalg.eigh(F_prime, overwrite_a = False, eigvals_only = False)
-        C_prime = np.diag(C_prime)
+        E_prime, C_prime = scipy.linalg.eigh(F_prime, overwrite_a = False, eigvals_only = False)
+        #C_prime = np.diag(C_prime)
 
         #Construct new SCF eignvector matrix
         C_prime_0 = S_half.dot(C_prime)
@@ -110,7 +110,7 @@ def simple_scf(molecule):
             raise Exception("Maximum number of SCF iterations exceeded.")
 
     print('\nSCF converged.')
-    print('Final RHF Energy: %.8f [Eh]' % (SCF_E))
+    print('Final RHF Energy: %.8f Ha' % (SCF_E))
 
 molecule mol {
 O
