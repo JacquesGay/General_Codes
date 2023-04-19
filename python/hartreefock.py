@@ -48,15 +48,16 @@ def simple_scf(molecule):
     #U_trans = np.matrix.transpose(U)
     S_half_1 = np.matmul(U, lam_half)
     S_half = np.matmul(S_half_1, U.T)
-    print(S_half_1, S_half)
 
     #################Construct initial (guess) density matrix###########
     #Construct core fock matrix in orthogonalized basis
-    F_i.gemm(True, False, 0, S_half, H, S_half, 1)
+    F_i_1 = np.matmul(S_half.T, H)
+    F_i = np.matmul(F_i_1, S_half)
     #Diagonalize fock matrix using a standard eigenvalue routine with scipy; E = enegergy matrix, C = coefficient matrix
-    C, E = np.linalg.eigh(F)
+    C, E = np.linalg.eigh(F_i)
+    C = np.diag(C)
     #Form original eigenvector matrix
-    C_0 = S_half.dot(C)
+    C_0 = np.matmul(S_half,C)
     #from C_0 get the orbitals that are occupied and ommit unoccupied
     C_occ = C_0[:,:ndocc]
     #Build density matrix from the occupied orbitals
@@ -82,12 +83,14 @@ def simple_scf(molecule):
             break
         E_old = SCF_E
 
-        #Transform foc matrix
-        F_prime_0.gemm(True, False, S_half, F)
-        F_prime.gemm(False, False, F_prime_0, S_half)
+        #Transform fock matrix
+        F_prime_0 = np.matmul(S_half.T, F)
+        F_prime = np.matmul(F_prime_0, S_half)
+      
 
         #Diagonalize the fock matrix
         C_prime, E_prime = scipy.linalg.eigh(F_prime, overwrite_a = False, eigvals_only = False)
+        C_prime = np.diag(C_prime)
 
         #Construct new SCF eignvector matrix
         C_prime_0 = S_half.dot(C_prime)
