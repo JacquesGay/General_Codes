@@ -73,15 +73,15 @@ def geompull(input, geomoutput, distoutput, numatoms):
             opendistfile.write(F'{atoms} {x_coord} {y_coord} {z_coord} \n')  #For the distance file
 
             if atoms == 1:
-                atoms == "H"
+                atoms = "H"
             elif atoms == 6:
-                atoms == "C"
+                atoms = "C"
             elif atoms == 7:
-                atoms == "N"
+                atoms = "N"
             elif atoms == 8:
-                atoms == "O"
+                atoms = "O"
             elif atoms == 15:
-                atoms == "P"
+                atoms = "P"
             
             opennew.write(F'{atoms} {x_coord} {y_coord} {z_coord} \n')  #for the geometry file we will use
         end_index += 1
