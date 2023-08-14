@@ -101,7 +101,7 @@ def energypull(input, output):
 
     for value in opt_line:
         count = value
-        for line in rline[value-900:orientation_end[index]]:
+        for line in rline[value-900:orientation_end[index]]:   #this subtraction index may need to be changed depending on the system
             if "SCF Done".lower() in line.lower():
                 words = line.split()
                 energy = str(words[4])
@@ -138,7 +138,7 @@ def computedist(input, output, atom1, atom2):
     arr2 = np.split(arr2, arrayleng)
     arr1 = np.transpose(arr1)
     arr2 = np.transpose(arr2)
-    for i in range(0,11):
+    for i in range(0,len(opt_line):
         p1 = np.array([arr1[0][i], arr1[1][i], arr1[2][i]])
         p2 = np.array([arr2[0][i], arr2[1][i], arr2[2][i]])
         #print(p1,p2)
@@ -147,7 +147,7 @@ def computedist(input, output, atom1, atom2):
     print(distances)
     print(energies)
 
-    for i in range(0,11):
+    for i in range(0,len(opt_line)):
         defile.write(F'Distance: {distances[i]} Energy: {energies[i]} \n')
 
     defile.close()
